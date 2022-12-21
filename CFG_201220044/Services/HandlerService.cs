@@ -17,30 +17,22 @@ public static class HandlerService
             {
                 bool isNonTerminal = default;
                 for (int i = 0; i < content.Length; i++)
-                {
                     if (symbolNames.Contains(content[i].ToString()))
                     {
                         isNonTerminal = true;
                         var nonTerminal = symbolsAndContents.FirstOrDefault(p => p.Name == content[i].ToString());
-
                         foreach (var nonTerminalContent in nonTerminal.Contents)
                         {
                             string word = content[..i] + nonTerminalContent + content[(i + 1)..];
                             AddToLists(word, generatedWords, duplicates);
                         }
                     }
-                }
                 if (!isNonTerminal) AddToLists(content, generatedWords, duplicates);
             }
             contentIterator = new(generatedWords);
             generatedWords.Clear();
         } while (true);
-
-        return new()
-        {
-            Words = contentIterator,
-            Duplicates = duplicates
-        };
+        return new(contentIterator, duplicates);
     }
 
     private static void AddToLists(string content, HashSet<string> generatedWords, HashSet<string> duplicateList)

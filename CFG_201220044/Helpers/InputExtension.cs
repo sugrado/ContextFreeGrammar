@@ -11,7 +11,7 @@ public static class InputExtension
         {
             string[] symbolAndContent = symbol.Split("->");
             string[] symbolContent = symbolAndContent[1].Split('|');
-            yield return new() { Name = symbolAndContent[0], Contents = symbolContent.ToList() };
+            yield return new(symbolAndContent[0], symbolContent.ToList());
         }
     }
 }
