@@ -2,7 +2,7 @@
 using CFG_201220044.Models;
 using CFG_201220044.Services;
 
-Console.WriteLine("Sembolleri ve içeriklerini girin. Boş küme elemanı için boşluk(space) kullanabilirsiniz:");
+Console.WriteLine("Sembolleri ve içeriklerini girin:");
 string inputString = Console.ReadLine();
 
 IEnumerable<Symbol> symbolsAndContents = InputExtension.GetSymbolsAndContents(inputString);
